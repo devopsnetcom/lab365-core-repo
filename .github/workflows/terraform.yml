@@ -1,0 +1,149 @@
+name: Terraform Azure VM Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Choose Terraform action"
+        required: true
+        default: "plan"
+        type: choice
+        options:
+          - plan
+          - apply
+          - destroy
+
+      location:
+        description: "Enter Azure Region"
+        required: true
+        default: "eastus"
+
+      user_name:
+        description: "Enter Username"
+        required: true
+        default: "azureuser"
+
+      user_identifier:
+        description: "Enter User Identifier"
+        required: true
+        default: "f9871570-eb5b-43eb-a877-101fd5c7bc3d"
+
+      course_name:
+        description: "Enter Course Name"
+        required: true
+        default: "AZ-104"
+
+      module_name:
+        description: "Enter Module Name"
+        required: true
+        default: "Lab01"
+
+env:
+  TF_IN_AUTOMATION: true
+  TF_INPUT: false
+  WORKING_DIR: terraform-resources
+
+  # Static backend for state storage
+  TFSTATE_RG: tfstate-rg
+  TFSTATE_STORAGE_ACCOUNT: tfstatestgacfortesting
+  TFSTATE_CONTAINER: tfstate
+  TFSTATE_KEY: terraform.tfstate
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    name: Terraform Workflow
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.7
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: |
+            {
+              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+              "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+              "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+            }
+
+            
+      - name: Set ARM environment variables
+        run: |
+          echo "ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}" >> $GITHUB_ENV
+          echo "ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
+          echo "ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}" >> $GITHUB_ENV
+
+
+      - name: Terraform Init (Static Backend)
+        working-directory: ${{ env.WORKING_DIR }}
+        run: |
+          terraform init \
+            -backend-config="resource_group_name=${{ env.TFSTATE_RG }}" \
+            -backend-config="storage_account_name=${{ env.TFSTATE_STORAGE_ACCOUNT }}" \
+            -backend-config="container_name=${{ env.TFSTATE_CONTAINER }}" \
+            -backend-config="key=${{ env.TFSTATE_KEY }}"
+
+
+      - name: Terraform Workspace Select/Create
+        working-directory: ${{ env.WORKING_DIR }}
+        run: |
+          WORKSPACE="${{ github.event.inputs.user_name }}-${{ github.event.inputs.course_name }}-${{ github.event.inputs.module_name }}"
+          terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
+          echo "Selected workspace: $WORKSPACE"
+
+
+      - name: Terraform Plan
+        if: ${{ github.event.inputs.action == 'plan' }}
+        working-directory: ${{ env.WORKING_DIR }}
+        run: |
+          terraform plan \
+            -var="user_name=${{ github.event.inputs.user_name }}" \
+            -var="user_identifier=${{ github.event.inputs.user_identifier }}" \
+            -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
+            -var="github_spn_client_id=${{ secrets.AZURE_CLIENT_ID }}" \
+            -var="course_name=${{ github.event.inputs.course_name }}" \
+            -var="module_name=${{ github.event.inputs.module_name }}" \
+            -var="rg_Name=rg-${{ github.event.inputs.course_name }}-${{ github.event.inputs.module_name }}" \
+            -var="location=${{ github.event.inputs.location }}" \
+            -var-file="terraform.tfvars"
+
+
+      - name: Terraform Apply
+        if: ${{ github.event.inputs.action == 'apply' }}
+        working-directory: ${{ env.WORKING_DIR }}
+        run: |
+          terraform apply -auto-approve \
+            -var="user_name=${{ github.event.inputs.user_name }}" \
+            -var="user_identifier=${{ github.event.inputs.user_identifier }}" \
+            -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
+            -var="github_spn_client_id=${{ secrets.AZURE_CLIENT_ID }}" \
+            -var="course_name=${{ github.event.inputs.course_name }}" \
+            -var="module_name=${{ github.event.inputs.module_name }}" \
+            -var="rg_Name=rg-${{ github.event.inputs.course_name }}-${{ github.event.inputs.module_name }}" \
+            -var="location=${{ github.event.inputs.location }}" \
+            -var-file="terraform.tfvars"
+
+
+      - name: Terraform Destroy
+        if: ${{ github.event.inputs.action == 'destroy' }}
+        working-directory: ${{ env.WORKING_DIR }}
+        run: |
+          terraform destroy -auto-approve \
+            -var="user_name=${{ github.event.inputs.user_name }}" \
+            -var="user_identifier=${{ github.event.inputs.user_identifier }}" \
+            -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
+            -var="github_spn_client_id=${{ secrets.AZURE_CLIENT_ID }}" \
+            -var="course_name=${{ github.event.inputs.course_name }}" \
+            -var="module_name=${{ github.event.inputs.module_name }}" \
+            -var="rg_Name=rg-${{ github.event.inputs.course_name }}-${{ github.event.inputs.module_name }}" \
+            -var="location=${{ github.event.inputs.location }}" \
+            -var-file="terraform.tfvars"
