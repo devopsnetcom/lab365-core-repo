@@ -1,4 +1,4 @@
-name: Terraform Azure VM Deployment
+name: Terraform Lab365 Setup Deployment
 
 on:
   workflow_dispatch:
