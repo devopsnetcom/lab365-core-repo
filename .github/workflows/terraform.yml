@@ -1,4 +1,4 @@
-name: Terraform SkillLabs365 Lab Setup Deployment
+name: Terraform SkillLabs365 Course Setup Deployment
 
 on:
   workflow_dispatch:
