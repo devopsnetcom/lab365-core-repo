@@ -1,42 +1,12 @@
 
-locals {
-  prefix = lower(var.user_name)
-}
-
+/*
 locals {
   mother_vnet_name = "${var.course_name}-${var.module_name}-vnet"
   bastion_name = "${var.course_name}-${var.module_name}-vnet-bastion"
 }
 
-# ✅ DATA source to reference existing RG
-data "azurerm_resource_group" "rg" {
-  name = var.rg_Name
-}
 
-data "azuread_service_principal" "github_spn" {
-  client_id = var.github_spn_client_id
-}
-
-# Read specific Mother VNET
-data "azurerm_virtual_network" "parent_vnet" {
-  name                = local.mother_vnet_name
-  resource_group_name = var.rg_Name  
-}
-
-# Read specific Bastion subnet
-data "azurerm_subnet" "bastion" {
-  name                 = "AzureBastionSubnet"
-  virtual_network_name = data.azurerm_virtual_network.parent_vnet.name
-  resource_group_name  = var.rg_Name
-}
-
-# Get the Bastion Host
-data "azurerm_bastion_host" "bastion_host" {
-  name                = local.bastion_name
-  resource_group_name = var.rg_Name
-}
-
-
+/*
 ############# VNET & SUBNET & Basinton Subnet Deployment Code #############
 module "vnet01" {
   source                  = "../terraform-modules/network"

@@ -1,0 +1,102 @@
+{
+    "subscriptionName": "Azure Sandbox",
+    "parentRole": {
+        "name": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+        "description": "Allows creating and managing resources inside a Resource Group but prevents RG deletion or moving resources.",
+        "assignableScopes": [
+            "/subscriptions/{subscriptionid}"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Resources/subscriptions/resourcegroups/resources/read",
+                    "Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read",
+                    "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
+                    "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
+                    "Microsoft.Resources/subscriptions/resourcegroups/deployments/write",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read"
+                ],
+                "notActions": [
+                    "Microsoft.Resources/subscriptions/resourceGroups/delete",
+                    "Microsoft.Resources/subscriptions/resourceGroups/moveResources/action",
+                    "Microsoft.Resources/subscriptions/resourceGroups/validateMoveResources/action"
+                ],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    },
+    "courses": [
+        {
+            "name": "AZ-104",
+            "modules": [
+                {
+                    "name": "Lab02a",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for course/module students",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    "Microsoft.Storage/storageAccounts/read",
+                                    "Microsoft.Storage/storageAccounts/write",
+                                    "Microsoft.Storage/storageAccounts/delete",
+                                    "Microsoft.Storage/storageAccounts/listKeys/action",
+                                    "Microsoft.Storage/storageAccounts/regenerateKey/action"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ],
+                    "network": {
+                        "vnet": {
+                            "nameTemplate": "{course}-{module}-vnet",
+                            "addressSpace": "10.0.0.0/16"
+                        },
+                        "subnets": [
+                            {
+                                "nameTemplate": "AzureBastionSubnet",
+                                "addressPrefix": "10.0.0.0/27"
+                            }
+                        ],
+                        "bastion": {
+                            "hostNameTemplate": "{course}-{module}-vnet-bastion",
+                            "publicIpNameTemplate": "{course}-{module}-vnet-IPv4",
+                            "publicIpSku": "Standard"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

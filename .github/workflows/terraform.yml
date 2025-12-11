@@ -13,31 +13,6 @@ on:
           - apply
           - destroy
 
-      location:
-        description: "Enter Azure Region"
-        required: true
-        default: "eastus"
-
-      user_name:
-        description: "Enter Username"
-        required: true
-        default: "azureuser"
-
-      user_identifier:
-        description: "Enter User Identifier"
-        required: true
-        default: "f9871570-eb5b-43eb-a877-101fd5c7bc3d"
-
-      course_name:
-        description: "Enter Course Name"
-        required: true
-        default: "AZ-104"
-
-      module_name:
-        description: "Enter Module Name"
-        required: true
-        default: "Lab01"
-
 env:
   TF_IN_AUTOMATION: true
   TF_INPUT: false
@@ -46,7 +21,7 @@ env:
   # Static backend for state storage
   TFSTATE_RG: tfstate-rg
   TFSTATE_STORAGE_ACCOUNT: tfstatestgacfortesting
-  TFSTATE_CONTAINER: tfstate
+  TFSTATE_CONTAINER: tfsetupstate
   TFSTATE_KEY: terraform.tfstate
 
 jobs:
@@ -93,28 +68,13 @@ jobs:
             -backend-config="key=${{ env.TFSTATE_KEY }}"
 
 
-      - name: Terraform Workspace Select/Create
-        working-directory: ${{ env.WORKING_DIR }}
-        run: |
-          WORKSPACE="${{ github.event.inputs.user_name }}-${{ github.event.inputs.course_name }}-${{ github.event.inputs.module_name }}"
-          terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
-          echo "Selected workspace: $WORKSPACE"
-
-
       - name: Terraform Plan
         if: ${{ github.event.inputs.action == 'plan' }}
         working-directory: ${{ env.WORKING_DIR }}
         run: |
           terraform plan \
-            -var="user_name=${{ github.event.inputs.user_name }}" \
-            -var="user_identifier=${{ github.event.inputs.user_identifier }}" \
             -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
-            -var="github_spn_client_id=${{ secrets.AZURE_CLIENT_ID }}" \
-            -var="course_name=${{ github.event.inputs.course_name }}" \
-            -var="module_name=${{ github.event.inputs.module_name }}" \
-            -var="rg_Name=rg-${{ github.event.inputs.course_name }}-${{ github.event.inputs.module_name }}" \
-            -var="location=${{ github.event.inputs.location }}" \
-            -var-file="terraform.tfvars"
+            -var-file="Labs365Course_Setup.json"
 
 
       - name: Terraform Apply
@@ -122,15 +82,8 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
         run: |
           terraform apply -auto-approve \
-            -var="user_name=${{ github.event.inputs.user_name }}" \
-            -var="user_identifier=${{ github.event.inputs.user_identifier }}" \
             -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
-            -var="github_spn_client_id=${{ secrets.AZURE_CLIENT_ID }}" \
-            -var="course_name=${{ github.event.inputs.course_name }}" \
-            -var="module_name=${{ github.event.inputs.module_name }}" \
-            -var="rg_Name=rg-${{ github.event.inputs.course_name }}-${{ github.event.inputs.module_name }}" \
-            -var="location=${{ github.event.inputs.location }}" \
-            -var-file="terraform.tfvars"
+            -var-file="Labs365Course_Setup.json"
 
 
       - name: Terraform Destroy
@@ -138,12 +91,5 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
         run: |
           terraform destroy -auto-approve \
-            -var="user_name=${{ github.event.inputs.user_name }}" \
-            -var="user_identifier=${{ github.event.inputs.user_identifier }}" \
             -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
-            -var="github_spn_client_id=${{ secrets.AZURE_CLIENT_ID }}" \
-            -var="course_name=${{ github.event.inputs.course_name }}" \
-            -var="module_name=${{ github.event.inputs.module_name }}" \
-            -var="rg_Name=rg-${{ github.event.inputs.course_name }}-${{ github.event.inputs.module_name }}" \
-            -var="location=${{ github.event.inputs.location }}" \
-            -var-file="terraform.tfvars"
+            -var-file="Labs365Course_Setup.json"
