@@ -1,9 +1,39 @@
 
-/*
 locals {
-  mother_vnet_name = "${var.course_name}-${var.module_name}-vnet"
-  bastion_name = "${var.course_name}-${var.module_name}-vnet-bastion"
+  subscription_display_name = var.subscriptionName
+  courses_list              = var.courses
 }
+
+# Resolve subscription id from subscription display name
+data "azurerm_subscriptions" "all" {}
+
+locals {
+  # Subscription ID resolved from display name
+  subscription_id = [
+    for sub in data.azurerm_subscriptions.all.subscriptions :
+    sub.subscription_id if sub.display_name == local.subscription_display_name
+  ][0]
+
+  # flatten courses/modules into a map keyed by "course::module"
+  course_module_list = flatten([
+    for course in local.courses_list : [
+      for mod in course.modules : {
+        course_name = course.name
+        module_name = mod.name
+        module_obj  = mod
+      }
+    ]
+  ])
+
+  # course_module_map : map of course/module to module object
+  course_module_map = {
+    for item in local.course_module_list :
+    "${item.course_name}::${item.module_name}" => item
+  }
+}
+
+resource "random_uuid" "parent_role_guid" {}
+
 
 
 /*
