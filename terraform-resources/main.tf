@@ -34,7 +34,7 @@ locals {
 
 # Create custom role definition for parent role
 module "parent_role" {
-  source          = "./modules/role_definition"
+  source          = "../terraform-modules/role_definition"
   parentRole      = var.parentRole
   subscription_id = local.subscription_id
 }
