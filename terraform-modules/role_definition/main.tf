@@ -15,7 +15,7 @@ resource "azurerm_role_definition" "parent" {
     count = try(data.azurerm_role_definition.existing_parent.id, null) == null ? 1 : 0
 
     name               = var.parentRole.name
-    role_definition_id = random_uuid.parent_role_guid.result
+    role_definition_id = random_uuid.parent_role_guid[0].result
 
     scope = replace(var.parentRole.assignableScopes[0],"{subscriptionid}",var.subscription_id)
 
