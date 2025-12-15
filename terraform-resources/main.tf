@@ -38,7 +38,7 @@ resource "random_uuid" "parent_role_guid" {}
 resource "azurerm_role_definition" "parent_role" {
   name               = var.parentRole.name
   description        = var.parentRole.description
-  scope              = replace(var.parentRole.assignableScopes[0], "{subscriptionid}", data.azurerm_subscription.current.subscription_id)
+  scope              = replace(var.parentRole.assignableScopes[0], "{subscriptionid}", local.subscription_id)
   role_definition_id = random_uuid.parent_role_guid.result
 
   permissions {
