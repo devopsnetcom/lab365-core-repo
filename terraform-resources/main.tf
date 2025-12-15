@@ -34,7 +34,20 @@ locals {
 
 resource "random_uuid" "parent_role_guid" {}
 
+# Create custom role definition for parent role
+resource "azurerm_role_definition" "parent_role" {
+  name               = var.parentRole.name
+  description        = var.parentRole.description
+  scope              = replace(var.parentRole.assignableScopes[0], "{subscriptionid}", data.azurerm_subscription.current.subscription_id)
+  role_definition_id = random_uuid.parent_role_guid.result
 
+  permissions {
+    actions          = var.parentRole.permissions[0].actions
+    not_actions      = var.parentRole.permissions[0].notActions
+    data_actions     = var.parentRole.permissions[0].dataActions
+    not_data_actions = var.parentRole.permissions[0].notDataActions
+  }
+}
 
 /*
 ############# VNET & SUBNET & Basinton Subnet Deployment Code #############
