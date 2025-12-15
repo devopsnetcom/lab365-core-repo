@@ -32,7 +32,9 @@ locals {
   }
 }
 
-# Create custom role definition for parent role
+############################################
+# Parent Role (Subscription Level)
+############################################
 module "parent_role" {
   source          = "../terraform-modules/role_definition"
   parentRole      = var.parentRole
