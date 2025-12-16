@@ -46,7 +46,7 @@ module "parent_role" {
 ############################################
 
 module "ad_groups" {
-  source   = "./modules/ad_group"
+  source   = "../terraform-modules/ad_group"
   for_each = local.course_module_map
 
   course = each.value.course_name
