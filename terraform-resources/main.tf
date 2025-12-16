@@ -41,6 +41,17 @@ module "parent_role" {
   subscription_id = local.subscription_id
 }
 
+############################################
+# AD Groups (Per Course / Module)
+############################################
+
+module "ad_groups" {
+  source   = "./modules/ad_group"
+  for_each = local.course_module_map
+
+  course = each.value.course_name
+  module = each.value.module_obj
+}
 
 /*
 ############# VNET & SUBNET & Basinton Subnet Deployment Code #############

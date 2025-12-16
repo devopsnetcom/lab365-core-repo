@@ -34,7 +34,7 @@
                     "name": "Lab02a",
                     "adGroup": {
                         "nameTemplate": "{course}-Grp-{module}",
-                        "description": "AD group for course/module students",
+                        "description": "AD group for {course}-{module} students",
                         "type": "Security",
                         "membershipType": "Assigned"
                     },
@@ -66,11 +66,8 @@
                                     "Microsoft.Resources/deployments/read",
                                     "Microsoft.Resources/deployments/write",
                                     "Microsoft.Resources/deployments/validate/action",
-                                    "Microsoft.Storage/storageAccounts/read",
-                                    "Microsoft.Storage/storageAccounts/write",
-                                    "Microsoft.Storage/storageAccounts/delete",
-                                    "Microsoft.Storage/storageAccounts/listKeys/action",
-                                    "Microsoft.Storage/storageAccounts/regenerateKey/action"
+                                    "Microsoft.Authorization/roleAssignments/*",
+                                    "Microsoft.Authorization/roleDefinitions/write"
                                 ],
                                 "notActions": [],
                                 "dataActions": [],

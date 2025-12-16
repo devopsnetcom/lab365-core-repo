@@ -1,0 +1,2 @@
+variable course {}
+variable module {}

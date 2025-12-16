@@ -1,4 +1,5 @@
 
+# Generate a random UUID for the parent role definition ID
 resource "random_uuid" "parent_role_guid" {}
 
 # Create custom role definition for parent role
