@@ -35,10 +35,12 @@ locals {
 ############################################
 # Parent Role (Subscription Level)
 ############################################
+
 module "parent_role" {
-  source          = "../terraform-modules/role_definition"
-  parentRole      = var.parentRole
+  source          = "../terraform-modules/role_definition/parent"
+
   subscription_id = local.subscription_id
+  parentRole      = var.parentRole
 }
 
 ############################################
@@ -49,8 +51,65 @@ module "ad_groups" {
   source   = "../terraform-modules/ad_group"
   for_each = local.course_module_map
 
-  course = each.value.course_name
-  module = each.value.module_obj
+  course_name      = each.value.course_name
+  module_name      = each.value.module_name
+  ad_details       = each.value.module_obj.adGroup
+}
+
+############################################
+# Resource Groups (Per Course / Module)
+############################################
+
+module "resource_groups" {
+  source   = "../terraform-modules/resource_group"
+  for_each = local.course_module_map
+
+  course_name      = each.value.course_name
+  module_name      = each.value.module_name
+  rg_details       = each.value.module_obj.resourceGroup
+}
+
+
+############################################
+# Flatten module-level roles
+############################################
+
+locals {
+  module_roles_list = flatten([
+    for k, v in local.course_module_map : [
+      for role in v.module_obj.roles : {
+        key          = "${v.course_name}::${v.module_name}::${replace(role.nameTemplate, "{course}", v.course_name)}"
+        course_name  = v.course_name
+        module_name  = v.module_name
+        role         = role
+        rg_name      = module.resource_groups[k].rg_name
+      }
+    ]
+  ])
+
+  module_roles_map = {
+    for r in local.module_roles_list :
+    r.key => r
+  }
+}
+
+################################################
+# Module Role Definitions (Resource Group Level)
+#################################################
+
+module "module_roles" {
+  source   = "./modules/role_definition/module"
+  for_each = local.module_roles_map
+
+  course_name     = each.value.course_name
+  module_name     = each.value.module_name
+  moduleRole      = each.value.role
+  rg_name         = each.value.rg_name
+  subscription_id = local.subscription_id
+
+  depends_on = [
+    module.resource_groups
+  ]
 }
 
 /*
