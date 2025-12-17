@@ -31,9 +31,9 @@ resource "azurerm_role_definition" "module" {
   description = var.moduleRole.description
 
   permissions {
-    actions          = var.moduleRole.permissions[0].actions
-    not_actions      = var.moduleRole.permissions[0].notActions
-    data_actions     = var.moduleRole.permissions[0].dataActions
-    not_data_actions = var.moduleRole.permissions[0].notDataActions
+    actions          = var.moduleRole.permissions.actions
+    not_actions      = var.moduleRole.permissions.notActions
+    data_actions     = var.moduleRole.permissions.dataActions
+    not_data_actions = var.moduleRole.permissions.notDataActions
   }
 }
