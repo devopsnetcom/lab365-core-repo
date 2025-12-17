@@ -98,7 +98,7 @@ locals {
 #################################################
 
 module "module_roles" {
-  source   = "./modules/role_definition/module"
+  source   = "../terraform-modules/role_definition/module"
   for_each = local.module_roles_map
 
   course_name     = each.value.course_name
