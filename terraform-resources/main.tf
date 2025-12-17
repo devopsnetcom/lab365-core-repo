@@ -112,6 +112,26 @@ module "module_roles" {
   ]
 }
 
+############################################
+# Role Assignments (RG Level)
+############################################
+
+module "role_assignments" {
+  source   = "../terraform-modules/role_assignment"
+  for_each = local.course_module_map
+
+  course_name     = each.value.course_name
+  module_name     = each.value.module_name
+  rg_name         = module.resource_groups[each.key].rg_name
+  subscription_id = local.subscription_id
+  roleAssignments = each.value.module_obj.resourceGroup.roleAssignments
+  principal_id    = module.ad_groups[each.key].group_object_id
+
+  depends_on = [
+    module.module_roles
+  ]
+}
+
 /*
 ############# VNET & SUBNET & Basinton Subnet Deployment Code #############
 module "vnet01" {
