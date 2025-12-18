@@ -9,12 +9,13 @@
         "permissions": [
             {
                 "actions": [
+                    "Microsoft.Resources/subscriptions/read",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read",
                     "Microsoft.Resources/subscriptions/resourcegroups/resources/read",
                     "Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read",
                     "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
                     "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
-                    "Microsoft.Resources/subscriptions/resourcegroups/deployments/write",
-                    "Microsoft.Resources/subscriptions/resourceGroups/read"
+                    "Microsoft.Resources/subscriptions/resourcegroups/deployments/write"                    
                 ],
                 "notActions": [
                     "Microsoft.Resources/subscriptions/resourceGroups/delete",
