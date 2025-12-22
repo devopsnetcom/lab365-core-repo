@@ -73,6 +73,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
         run: |
           terraform plan \
+            -var="github_spn_client_id=${{ secrets.AZURE_CLIENT_ID }}" \
             -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
             -var-file="Labs365Course_Setup.json"
 
@@ -82,6 +83,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
         run: |
           terraform apply -auto-approve \
+            -var="github_spn_client_id=${{ secrets.AZURE_CLIENT_ID }}" \
             -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
             -var-file="Labs365Course_Setup.json"
 
@@ -91,5 +93,6 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
         run: |
           terraform destroy -auto-approve \
+            -var="github_spn_client_id=${{ secrets.AZURE_CLIENT_ID }}" \
             -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
             -var-file="Labs365Course_Setup.json"

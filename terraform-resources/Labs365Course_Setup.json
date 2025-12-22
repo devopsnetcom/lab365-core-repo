@@ -1,5 +1,18 @@
 {
     "subscriptionName": "Azure Sandbox",
+    "network": 
+    {
+        "vnet": {
+            "nameTemplate": "Shared-Hub-VNet",
+            "addressSpace": "10.0.0.0/16"
+        },
+        "subnets": [
+            {
+                "nameTemplate": "guac-subnet",
+                "addressPrefix": "10.0.0.0/24"
+            }
+        ]
+    },
     "parentRole": {
         "name": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
         "description": "Allows creating and managing resources inside a Resource Group but prevents RG deletion or moving resources.",
@@ -75,24 +88,7 @@
                                 "notDataActions": []
                             }
                         }
-                    ],
-                    "network": {
-                        "vnet": {
-                            "nameTemplate": "{course}-{module}-vnet",
-                            "addressSpace": "10.0.0.0/16"
-                        },
-                        "subnets": [
-                            {
-                                "nameTemplate": "AzureBastionSubnet",
-                                "addressPrefix": "10.0.0.0/27"
-                            }
-                        ],
-                        "bastion": {
-                            "hostNameTemplate": "{course}-{module}-vnet-bastion",
-                            "publicIpNameTemplate": "{course}-{module}-vnet-IPv4",
-                            "publicIpSku": "Standard"
-                        }
-                    }
+                    ]
                 }
             ]
         }
