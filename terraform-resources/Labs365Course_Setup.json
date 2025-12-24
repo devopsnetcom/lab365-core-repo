@@ -84,8 +84,7 @@
                                     "Microsoft.Resources/deployments/write",
                                     "Microsoft.Resources/deployments/validate/action",
                                     
-                                    "Microsoft.Authorization/*/write",
-                                    "Microsoft.Directory/*"
+                                    "Microsoft.Authorization/*/write"
                                 ],
                                 "notActions": [],
                                 "dataActions": [],
@@ -130,7 +129,7 @@
                                     "Microsoft.Resources/deployments/read",
                                     "Microsoft.Resources/deployments/write",
                                     "Microsoft.Resources/deployments/validate/action",
-                                    
+
                                     "Microsoft.Authorization/roleAssignments/*",
                                     "Microsoft.Authorization/roleDefinitions/write"
                                 ],
