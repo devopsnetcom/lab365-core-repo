@@ -3,7 +3,7 @@
     "network": 
     {
         "resourceGroup": {
-            "name": "Shared-Network-RG",
+            "name": "RG-CoreComponents",
             "location": "eastus"
         },
         "vnet": {
