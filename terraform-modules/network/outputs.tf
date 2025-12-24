@@ -7,5 +7,5 @@ output "vnet_Id" {
 }
 
 output "subnet_Id" {
-  value = azurerm_subnet.shared_subnet.*.id
+  value = azurerm_subnet.guac_subnet.*.id
 }
