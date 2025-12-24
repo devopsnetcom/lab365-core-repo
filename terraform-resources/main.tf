@@ -132,19 +132,19 @@ module "role_assignments" {
   ]
 }
 
-/*
 ############# VNET & SUBNET & Basinton Subnet Deployment Code #############
-module "vnet01" {
+module "vnet" {
   source                  = "../terraform-modules/network"
-  vnet_Name               = "${local.prefix}-vnet"
-  user_name               = local.prefix
-  rg_Name                 = data.azurerm_resource_group.rg.name
-  location                = data.azurerm_resource_group.rg.location
-  subnet_NameList         = var.subnet_NameList
-  mother_vnet_name        = data.azurerm_virtual_network.parent_vnet.name
-  mother_vnet_id          = data.azurerm_virtual_network.parent_vnet.id
-  bastion_subnet_cidr     = data.azurerm_subnet.bastion.address_prefix
+
+  rg_Name                 = var.network.resourceGroup.name
+  location                = var.network.resourceGroup.location
+  vnet_Name               = var.network.vnet.name
+  vnet_AddressSpace      = var.network.vnet.addressSpace
+  subnet_NameList         = var.network.subnets
+  
 }
+
+
 
 /* Debug Outputs
 output "principal_id_debug" {

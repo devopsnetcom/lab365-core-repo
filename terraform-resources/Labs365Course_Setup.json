@@ -2,13 +2,17 @@
     "subscriptionName": "Azure Sandbox",
     "network": 
     {
+        "resourceGroup": {
+            "name": "Shared-Network-RG",
+            "location": "eastus"
+        },
         "vnet": {
-            "nameTemplate": "Shared-Hub-VNet",
+            "name": "Shared-Hub-VNet",
             "addressSpace": "10.0.0.0/16"
         },
         "subnets": [
             {
-                "nameTemplate": "guac-subnet",
+                "name": "guac-subnet",
                 "addressPrefix": "10.0.0.0/24"
             }
         ]

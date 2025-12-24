@@ -1,4 +1,5 @@
 variable "subscriptionName" {}
+variable "network" {}
 variable "parentRole" {}
 variable "courses" {}
 variable "tenant_id" {}
