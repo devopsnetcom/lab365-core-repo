@@ -9,12 +9,15 @@ resource "azurerm_virtual_network" "shared_vnet" {
 
 # Create Subnets within the VNET
 resource "azurerm_subnet" "guac_subnet" {
-  count                = length(var.subnet_NameList)
+ for_each = {
+    for subnet in var.subnet_NameList :
+    subnet.name => subnet
+  }
 
-  name                 = var.subnet_NameList[count.index].name
+  name                 = each.value.name
   virtual_network_name = azurerm_virtual_network.shared_vnet.name
   resource_group_name  = var.rg_Name
-  address_prefixes     = [var.subnet_NameList[count.index].addressPrefix]
+  address_prefixes     = [each.value.addressPrefix]
 }
 
 
