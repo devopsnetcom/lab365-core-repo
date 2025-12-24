@@ -1,7 +1,6 @@
 {
     "subscriptionName": "Azure Sandbox",
-    "network": 
-    {
+    "network": {
         "resourceGroup": {
             "name": "RG-CoreComponents",
             "location": "eastus"
