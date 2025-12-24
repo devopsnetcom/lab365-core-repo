@@ -7,5 +7,5 @@ output "vnet_Id" {
 }
 
 output "subnet_Id" {
-  value = azurerm_subnet.guac_subnet.*.id
+  value = values(azurerm_subnet.guac_subnet)[*].id
 }
