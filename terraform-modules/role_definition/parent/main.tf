@@ -17,4 +17,8 @@ resource "azurerm_role_definition" "parent" {
     data_actions     = var.parentRole.permissions[0].dataActions
     not_data_actions = var.parentRole.permissions[0].notDataActions
   }
+
+  lifecycle {
+    ignore_changes = [ role_definition_id ]
+  }
 }
