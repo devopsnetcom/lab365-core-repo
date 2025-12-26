@@ -46,7 +46,7 @@ resource "azurerm_role_definition" "module" {
                         "{module}", var.module_name
                       )
 
-  role_definition_id = resolved_module_role_definition_id
+  role_definition_id = local.resolved_module_role_definition_id
 
   scope = local.resolved_scope
 
