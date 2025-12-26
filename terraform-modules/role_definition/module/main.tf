@@ -15,16 +15,38 @@ locals {
   )
 }
 
-# Generate a random UUID for the module role definition ID
-resource "random_uuid" "module_role_guid" {}
+# Check if the role definition already exists
+data "azurerm_role_definition" "module_existing" {
+  name  = replace(
+            replace(var.moduleRole.nameTemplate, "{course}", var.course_name),
+            "{module}", var.module_name
+          )
+  scope = local.resolved_scope
+}
+
+# Determine if the module role already exists
+locals {
+  module_role_exists = can(data.azurerm_role_definition.module_existing.id)
+}
+
+# Generate a random UUID for the module role definition ID only if it does not already exist
+resource "random_uuid" "module_role_guid" {
+  count = local.module_role_exists ? 0 : 1
+}
+
+locals {
+  resolved_module_role_definition_id = local.module_role_exists ? data.azurerm_role_definition.module_existing.id : azurerm_role_definition.module[0].id
+}
 
 # Create custom role definition for module role
 resource "azurerm_role_definition" "module" {
-   name               = replace(
+  
+  name               = replace(
                         replace(var.moduleRole.nameTemplate, "{course}", var.course_name),
                         "{module}", var.module_name
                       )
-  role_definition_id = random_uuid.module_role_guid.result
+
+  role_definition_id = resolved_module_role_definition_id
 
   scope = local.resolved_scope
 
