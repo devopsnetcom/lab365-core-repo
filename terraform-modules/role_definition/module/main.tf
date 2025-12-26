@@ -36,8 +36,5 @@ resource "azurerm_role_definition" "module" {
     data_actions     = var.moduleRole.permissions.dataActions
     not_data_actions = var.moduleRole.permissions.notDataActions
   }
-  
-  lifecycle {
-    ignore_changes = [ role_definition_id ]
-  }
+
 }
