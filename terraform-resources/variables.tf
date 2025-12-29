@@ -1,4 +1,5 @@
 variable "subscriptionName" {}
+variable "eventGrid" {}
 variable "network" {}
 variable "parentRole" {}
 variable "courses" {}

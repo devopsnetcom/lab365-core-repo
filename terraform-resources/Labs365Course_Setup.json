@@ -1,5 +1,17 @@
 {
     "subscriptionName": "Azure Sandbox",
+    "eventGrid": {
+        "resourceGroup": "RG-CoreComponents",
+        "name": "egt-lab-eastus-001",
+        "roles": [
+            {
+                "name": "EventGrid Data Contributor",
+                "description": "Allows publishing events to Event Grid topics.",
+                "scope": "{topic_id}",
+                "principalId": "{principalid}"
+            }
+        ]
+    },
     "network": {
         "resourceGroup": {
             "name": "RG-CoreComponents",

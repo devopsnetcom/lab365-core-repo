@@ -1,4 +1,19 @@
 
+# Get GitHub Service Principal
+data "azuread_service_principal" "github_spn" {
+  client_id = var.github_spn_client_id
+}
+
+############################################
+# Event grid and roles for lab deployment notifications
+############################################
+module "event_grid" {
+  source = "../terraform-modules/event_grid"
+  event_grid = var.eventGrid
+  principal_id = data.azuread_service_principal.github_spn.id
+}
+
+############################################
 locals {
   subscription_display_name = var.subscriptionName
   courses_list              = var.courses
@@ -139,7 +154,7 @@ module "vnet" {
   rg_Name                 = var.network.resourceGroup.name
   location                = var.network.resourceGroup.location
   vnet_Name               = var.network.vnet.name
-  vnet_AddressSpace      = var.network.vnet.addressSpace
+  vnet_AddressSpace       = var.network.vnet.addressSpace
   subnet_NameList         = var.network.subnets
   
 }
