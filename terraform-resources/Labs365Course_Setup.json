@@ -8,7 +8,7 @@
                 "name": "EventGrid Data Contributor",
                 "description": "Allows publishing events to Event Grid topics.",
                 "scope": "{topic_id}",
-                "principalId": "{principalid}"
+                "principalId": "{principal_id}"
             }
         ]
     },
