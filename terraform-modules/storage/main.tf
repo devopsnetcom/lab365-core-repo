@@ -2,7 +2,7 @@
 # Terraform module to create an Azure Storage Account and a Storage Queue
 resource "azurerm_storage_account" "sa" {
   name                      = var.storageAccount.name
-  resource_group_name       = var.storageAccount.resource_group
+  resource_group_name       = var.storageAccount.resourceGroup
   location                  = var.storageAccount.location
 
   access_tier               = var.storageAccount.access_tier

@@ -16,7 +16,7 @@
     },
     "eventGrid": {
         "resourceGroup": "RG-CoreComponents",
-        "name": "egt-lab365-eastus-001",
+        "name": "egt-lab-eastus-001",
         "roles": [
             {
                 "name": "EventGrid Data Contributor",

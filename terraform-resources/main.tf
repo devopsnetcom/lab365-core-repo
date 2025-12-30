@@ -15,12 +15,11 @@ module "storage_account" {
 ############################################
 # Event grid and roles for lab deployment notifications
 ############################################
-/*
 module "event_grid" {
   source = "../terraform-modules/event_grid"
   event_grid = var.eventGrid
   principal_id = data.azuread_service_principal.github_spn.id
-}*/
+}
 
 ############################################
 locals {
