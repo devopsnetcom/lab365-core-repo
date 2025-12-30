@@ -19,6 +19,9 @@ module "event_grid" {
   source = "../terraform-modules/event_grid"
   event_grid = var.eventGrid
   principal_id = data.azuread_service_principal.github_spn.id
+  storage_queue_name = module.storage_account.queue_name
+  storage_queue_endpoint_url = module.storage_account.queue_endpoint_url
+  storage_account_id = module.storage_account.storage_account_id
 }
 
 ############################################

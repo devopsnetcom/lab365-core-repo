@@ -16,7 +16,9 @@
     },
     "eventGrid": {
         "resourceGroup": "RG-CoreComponents",
-        "name": "egt-lab-eastus-001",
+        "name": "egt-lab365-eastus-001",
+        "location": "eastus",
+        "Schema": "EventGridSchema",
         "roles": [
             {
                 "name": "EventGrid Data Contributor",
@@ -28,21 +30,16 @@
         "eventsubscriptions": [
             {
                 "name": "eventgrid-events-to-stg",
-                "topicResourceGroup": "RG-CoreComponents",
                 "topicName": "{topic_name}",
                 "endpointType": "storagequeue",
-                "endpointUrl": "{storage_queue_endpoint_url}",
-                "includedEventTypes": [
-                    "Microsoft.Resources.ResourceWriteSuccess",
-                    "Microsoft.Resources.ResourceDeleteSuccess"
-                ]
+                "endpointUrl": "{storage_queue_endpoint_url}"
+                
             },
             {
                 "name": "es-lab-events-002",
-                "topicResourceGroup": "RG-CoreComponents",
-                "topicName": "egt-lab-eastus-001",
+                "topicName": "{topic_name}",
                 "endpointType": "webhook",
-                "endpointUrl": "{webhook_endpoint_url}",
+                "endpointUrl": "https://stagelab365.netcomlearning.com/api/v1/azureEvents",
                 "includedEventTypes": [
                     "Microsoft.Resources.ResourceWriteSuccess",
                     "Microsoft.Resources.ResourceDeleteSuccess"
