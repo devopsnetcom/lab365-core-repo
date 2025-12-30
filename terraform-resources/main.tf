@@ -5,13 +5,22 @@ data "azuread_service_principal" "github_spn" {
 }
 
 ############################################
+# storage account and queue for lab deployment events
+############################################
+module "storage_account" {
+  source = "../terraform-modules/storage"
+  storageAccount = var.storageAccount
+}
+
+############################################
 # Event grid and roles for lab deployment notifications
 ############################################
+/*
 module "event_grid" {
   source = "../terraform-modules/event_grid"
   event_grid = var.eventGrid
   principal_id = data.azuread_service_principal.github_spn.id
-}
+}*/
 
 ############################################
 locals {
