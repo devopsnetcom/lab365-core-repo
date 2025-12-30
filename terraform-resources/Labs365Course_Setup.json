@@ -36,7 +36,7 @@
                 
             },
             {
-                "name": "es-lab-events-002",
+                "name": "my-node-webhook-subscription",
                 "topicName": "{topic_name}",
                 "endpointType": "webhook",
                 "endpointUrl": "https://stagelab365.netcomlearning.com/api/v1/azureEvents",
