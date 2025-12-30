@@ -1,14 +1,51 @@
 {
     "subscriptionName": "Azure Sandbox",
+    "storageAccount": {
+        "resourceGroup": "RG-CoreComponents",
+        "name": "stglab365eastus001",
+        "location": "eastus",
+        "access_tier" : "Hot",
+        "kind": "StorageV2",
+        "account_tier": "Standard",
+        "account_replication_type": "RAGRS",
+        "tls_version": "TLS1_2",
+        "queueservice": {
+            "name": "eventgrid-events-queue"
+        }
+    },
     "eventGrid": {
         "resourceGroup": "RG-CoreComponents",
-        "name": "egt-lab-eastus-001",
+        "name": "egt-lab365-eastus-001",
         "roles": [
             {
                 "name": "EventGrid Data Contributor",
                 "description": "Allows publishing events to Event Grid topics.",
                 "scope": "{topic_id}",
                 "principalId": "{principal_id}"
+            }
+        ],
+        "eventsubscriptions": [
+            {
+                "name": "eventgrid-events-to-stg",
+                "topicResourceGroup": "RG-CoreComponents",
+                "topicName": "{topic_name}",
+                "endpointType": "storagequeue",
+                "endpointUrl": "{storage_queue_endpoint_url}",
+                "includedEventTypes": [
+                    "Microsoft.Resources.ResourceWriteSuccess",
+                    "Microsoft.Resources.ResourceDeleteSuccess"
+                ]
+            },
+            {
+                "name": "es-lab-events-002",
+                "topicResourceGroup": "RG-CoreComponents",
+                "topicName": "egt-lab-eastus-001",
+                "endpointType": "webhook",
+                "endpointUrl": "{webhook_endpoint_url}",
+                "includedEventTypes": [
+                    "Microsoft.Resources.ResourceWriteSuccess",
+                    "Microsoft.Resources.ResourceDeleteSuccess"
+                ]
             }
         ]
     },

@@ -1,4 +1,5 @@
 variable "subscriptionName" {}
+variable "storageAccount" {}
 variable "eventGrid" {}
 variable "network" {}
 variable "parentRole" {}
