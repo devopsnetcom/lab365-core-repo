@@ -3,7 +3,7 @@
 resource "azurerm_eventgrid_topic" "topic" {
   name                = var.event_grid.name
   location            = var.event_grid.location
-  resource_group_name = data.azurerm_resource_group.rg.name
+  resource_group_name = var.event_grid.resourceGroup
 
   public_network_access_enabled = true
   input_schema                  = var.event_grid.input_schema
