@@ -18,6 +18,6 @@ resource "azurerm_storage_account" "sa" {
 
 # Create a Storage Queue within the Storage Account
 resource "azurerm_storage_queue" "queue" {
-  name                 = var.storageAccount.queueservice.name
-  storage_account_name = azurerm_storage_account.sa.name
+  name                  = var.storageAccount.queueservice.name
+  storage_account_id    = azurerm_storage_account.sa.id
 }
