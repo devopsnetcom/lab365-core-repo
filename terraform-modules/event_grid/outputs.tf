@@ -1,6 +1,6 @@
 
 output "event_grid_topic_id" {
-  value = data.azurerm_eventgrid_topic.existing_topic.id
+  value = azurerm_eventgrid_topic.topic.id
 }
 
 output "event_grid_role_assignments" {
