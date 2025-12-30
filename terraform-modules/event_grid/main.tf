@@ -6,7 +6,7 @@ resource "azurerm_eventgrid_topic" "topic" {
   resource_group_name = var.event_grid.resourceGroup
 
   public_network_access_enabled = true
-  input_schema                  = var.event_grid.input_schema
+  input_schema                  = var.event_grid.Schema
 }
 
 # 
