@@ -7,14 +7,16 @@ data "azuread_service_principal" "github_spn" {
 ############################################
 # storage account and queue for lab deployment events
 ############################################
+
 module "storage_account" {
   source = "../terraform-modules/storage"
   storageAccount = var.storageAccount
 }
 
-############################################
+#############################################################
 # Event grid and roles for lab deployment notifications
-############################################
+#############################################################
+
 module "event_grid" {
   source = "../terraform-modules/event_grid"
   event_grid = var.eventGrid
@@ -23,7 +25,7 @@ module "event_grid" {
   storage_account_id = module.storage_account.storage_account_id
 }
 
-############################################
+# Local values
 locals {
   subscription_display_name = var.subscriptionName
   courses_list              = var.courses
@@ -157,7 +159,10 @@ module "role_assignments" {
   ]
 }
 
-############# VNET & SUBNET & Basinton Subnet Deployment Code #############
+####################################################
+# VNET & SUBNET & Basinton Subnet Deployment Code
+####################################################
+
 module "vnet" {
   source                  = "../terraform-modules/network"
 
@@ -168,8 +173,6 @@ module "vnet" {
   subnet_NameList         = var.network.subnets
   
 }
-
-
 
 /* Debug Outputs
 output "principal_id_debug" {
