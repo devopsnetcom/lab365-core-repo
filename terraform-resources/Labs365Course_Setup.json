@@ -39,11 +39,7 @@
                 "name": "my-node-webhook-subscription",
                 "topicName": "{topic_name}",
                 "endpointType": "webhook",
-                "endpointUrl": "https://stagelab365.netcomlearning.com/api/v1/azureEvents",
-                "includedEventTypes": [
-                    "Microsoft.Resources.ResourceWriteSuccess",
-                    "Microsoft.Resources.ResourceDeleteSuccess"
-                ]
+                "endpointUrl": "https://stagelab365.netcomlearning.com/api/v1/azureEvents"
             }
         ]
     },
