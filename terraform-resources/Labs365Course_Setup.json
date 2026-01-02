@@ -549,9 +549,10 @@
                                     "Microsoft.Resources/deployments/write",
                                     "Microsoft.Resources/deployments/validate/action",
                                     
+                                    "Microsoft.CognitiveServices/accounts/read",
+                                    "Microsoft.CognitiveServices/accounts/write",
                                     "Microsoft.CognitiveServices/accounts/listKeys/action",
-                                    "Microsoft.CognitiveServices/accounts/regenerateKey/action",
-                                    "Microsoft.CognitiveServices/accounts/ComputerVision/*"
+                                    "Microsoft.CognitiveServices/accounts/regenerateKey/action"
                                 ],
                                 "notActions": [],
                                 "dataActions": [],
