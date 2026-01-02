@@ -551,7 +551,6 @@
                                     
                                     "Microsoft.CognitiveServices/accounts/listKeys/action",
                                     "Microsoft.CognitiveServices/accounts/regenerateKey/action",
-                                    "Microsoft.CognitiveServices/accounts/keys/read",
                                     "Microsoft.CognitiveServices/accounts/ComputerVision/*"
                                 ],
                                 "notActions": [],
