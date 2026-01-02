@@ -94,7 +94,7 @@
                     "name": "Lab01",
                     "adGroup": {
                         "nameTemplate": "{course}-Grp-{module}",
-                        "description": "AD group for {course}-{module} students",
+                        "description": "AD group for {course}-{module} students. Manage Microsoft Entra ID Identities",
                         "type": "Security",
                         "membershipType": "Assigned"
                     },
@@ -140,7 +140,7 @@
                     "name": "Lab02a",
                     "adGroup": {
                         "nameTemplate": "{course}-Grp-{module}",
-                        "description": "AD group for {course}-{module} students",
+                        "description": "AD group for {course}-{module} students. Manage Subscriptions and RBAC",
                         "type": "Security",
                         "membershipType": "Assigned"
                     },
@@ -187,7 +187,7 @@
                     "name": "Lab02b",
                     "adGroup": {
                         "nameTemplate": "{course}-Grp-{module}",
-                        "description": "AD group for {course}-{module} students",
+                        "description": "AD group for {course}-{module} students. Manage Governance via Azure Policy",
                         "type": "Security",
                         "membershipType": "Assigned"
                     },
@@ -234,7 +234,7 @@
                     "name": "Lab03",
                     "adGroup": {
                         "nameTemplate": "{course}-Grp-{module}",
-                        "description": "AD group for {course}-{module} students",
+                        "description": "AD group for {course}-{module} students. Manage Azure resources using ARM Templates",
                         "type": "Security",
                         "membershipType": "Assigned"
                     },
@@ -280,7 +280,7 @@
                     "name": "Lab04",
                     "adGroup": {
                         "nameTemplate": "{course}-Grp-{module}",
-                        "description": "AD group for {course}-{module} students",
+                        "description": "AD group for {course}-{module} students. Implement Virtual Networking",
                         "type": "Security",
                         "membershipType": "Assigned"
                     },
@@ -326,7 +326,7 @@
                     "name": "Lab05",
                     "adGroup": {
                         "nameTemplate": "{course}-Grp-{module}",
-                        "description": "AD group for {course}-{module} students",
+                        "description": "AD group for {course}-{module} students. Implement Intersite Connectivity",
                         "type": "Security",
                         "membershipType": "Assigned"
                     },
@@ -372,7 +372,7 @@
                     "name": "Lab06",
                     "adGroup": {
                         "nameTemplate": "{course}-Grp-{module}",
-                        "description": "AD group for {course}-{module} students",
+                        "description": "AD group for {course}-{module} students. Implement Network Traffic Management",
                         "type": "Security",
                         "membershipType": "Assigned"
                     },
@@ -418,7 +418,7 @@
                     "name": "Lab07",
                     "adGroup": {
                         "nameTemplate": "{course}-Grp-{module}",
-                        "description": "AD group for {course}-{module} students",
+                        "description": "AD group for {course}-{module} students. Manage Azure Storage",
                         "type": "Security",
                         "membershipType": "Assigned"
                     },
@@ -452,6 +452,58 @@
                                     "Microsoft.Resources/deployments/validate/action",
 
                                     "Microsoft.Storage/*"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "AI-102",
+            "modules": [
+                {
+                    "name": "Lab01",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Create and deploy Azure AI services (Cognitive Services)",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    
+                                    "Microsoft.CognitiveServices/accounts/*",
+                                    "Microsoft.CognitiveServices/locations/checkSkuAvailability/action"
                                 ],
                                 "notActions": [],
                                 "dataActions": [],
