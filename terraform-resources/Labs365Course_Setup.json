@@ -740,8 +740,7 @@
                                     "Microsoft.CognitiveServices/accounts/read",
                                     "Microsoft.CognitiveServices/accounts/write",
                                     "Microsoft.CognitiveServices/accounts/listKeys/action",
-                                    "Microsoft.CognitiveServices/accounts/regenerateKey/action",
-                                    "Microsoft.CognitiveServices/accounts/keys/read"
+                                    "Microsoft.CognitiveServices/accounts/regenerateKey/action"
                                 ],
                                 "notActions": [],
                                 "dataActions": [],
