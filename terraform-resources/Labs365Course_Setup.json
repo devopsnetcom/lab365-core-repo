@@ -737,9 +737,11 @@
                                     "Microsoft.Resources/deployments/write",
                                     "Microsoft.Resources/deployments/validate/action",
                                     
+                                    "Microsoft.CognitiveServices/accounts/read",
+                                    "Microsoft.CognitiveServices/accounts/write",
                                     "Microsoft.CognitiveServices/accounts/listKeys/action",
-                                    "Microsoft.CognitiveServices/accounts/TextAnalytics/*",
-                                    "Microsoft.CognitiveServices/accounts/Language/*"
+                                    "Microsoft.CognitiveServices/accounts/regenerateKey/action",
+                                    "Microsoft.CognitiveServices/accounts/keys/read"
                                 ],
                                 "notActions": [],
                                 "dataActions": [],
