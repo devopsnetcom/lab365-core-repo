@@ -1555,7 +1555,6 @@
                                 "notActions": [],
                                 "dataActions": [
                                     "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read",
-                                    "Microsoft.Storage/storageAccounts/blobServices/containers/read",
                                     "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/write"
                                 ],
                                 "notDataActions": []
