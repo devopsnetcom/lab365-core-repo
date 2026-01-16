@@ -1550,12 +1550,14 @@
                                     "Microsoft.Resources/deployments/validate/action",
                                     
                                     "Microsoft.Storage/storageAccounts/listKeys/action",
+                                    "Microsoft.Storage/storageAccounts/read"
+                                ],
+                                "notActions": [],
+                                "dataActions": [
                                     "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read",
                                     "Microsoft.Storage/storageAccounts/blobServices/containers/read",
                                     "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/write"
                                 ],
-                                "notActions": [],
-                                "dataActions": [],
                                 "notDataActions": []
                             }
                         }
@@ -1649,7 +1651,8 @@
                                     "Microsoft.ContainerInstance/containerGroups/*",
                                     "Microsoft.ContainerRegistry/registries/*",
                                     "Microsoft.ContainerRegistry/registries/pull/read",
-                                    "Microsoft.ContainerRegistry/registries/build/*",
+                                    "Microsoft.ContainerRegistry/registries/runs/*",
+                                    "Microsoft.ContainerRegistry/registries/tasks/*",
                                     "Microsoft.ContainerService/managedClusters/read"
                                 ],
                                 "notActions": [],
