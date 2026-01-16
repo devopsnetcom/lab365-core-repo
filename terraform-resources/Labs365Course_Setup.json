@@ -1411,6 +1411,255 @@
                     ]
                 } 
             ]
+        },
+        {
+            "name": "AZ-204",
+            "modules": [
+                {
+                    "name": "Lab01",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Build a web application on Azure App Service",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    
+                                    "Microsoft.Web/sites/*",
+                                    "Microsoft.Web/serverfarms/*",
+                                    "Microsoft.Insights/components/*"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Lab02",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Implement task processing logic using Azure Functions",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    
+                                    "Microsoft.Web/sites/functions/*",
+                                    "Microsoft.Web/sites/host/*",
+                                    "Microsoft.Storage/storageAccounts/listKeys/action",
+                                    "Microsoft.Storage/storageAccounts/queueServices/queues/*"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Lab03",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Retrieve Azure Storage resources via .NET SDK",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    
+                                    "Microsoft.Storage/storageAccounts/listKeys/action",
+                                    "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read",
+                                    "Microsoft.Storage/storageAccounts/blobServices/containers/read",
+                                    "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/write"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Lab04",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Construct a polyglot data solution (Cosmos DB)",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    
+                                    "Microsoft.DocumentDB/databaseAccounts/*",
+                                    "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/*",
+                                    "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/*"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Lab05",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Deploy compute workloads using images and containers (ACI + ACR)",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    
+                                    "Microsoft.ContainerInstance/containerGroups/*",
+                                    "Microsoft.ContainerRegistry/registries/*",
+                                    "Microsoft.ContainerRegistry/registries/pull/read",
+                                    "Microsoft.ContainerRegistry/registries/build/*",
+                                    "Microsoft.ContainerService/managedClusters/read"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
