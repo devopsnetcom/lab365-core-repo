@@ -1742,13 +1742,14 @@
                                     "Microsoft.Resources/deployments/write",
                                     "Microsoft.Resources/deployments/validate/action",
                                     
-                                    "Microsoft.KeyVault/vaults/*",
+                                    "Microsoft.KeyVault/vaults/*"
+                                ],
+                                "notActions": [],
+                                "dataActions": [
                                     "Microsoft.KeyVault/vaults/secrets/read",
                                     "Microsoft.KeyVault/vaults/secrets/write",
                                     "Microsoft.KeyVault/vaults/secrets/delete"
                                 ],
-                                "notActions": [],
-                                "dataActions": [],
                                 "notDataActions": []
                             }
                         }
