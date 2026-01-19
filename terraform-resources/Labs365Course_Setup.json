@@ -1660,6 +1660,243 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "Lab06",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Authenticate using OpenID Connect, MSAL, .NET SDKs",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Lab07",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Access resource secrets securely (Key Vault)",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    
+                                    "Microsoft.KeyVault/vaults/*",
+                                    "Microsoft.KeyVault/vaults/secrets/read",
+                                    "Microsoft.KeyVault/vaults/secrets/write",
+                                    "Microsoft.KeyVault/vaults/secrets/delete"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Lab08",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Create a multi-tier solution (API Management + App Services)",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    
+                                    "Microsoft.ApiManagement/service/*",
+                                    "Microsoft.Web/sites/*",
+                                    "Microsoft.Insights/components/*"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Lab09",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Publish/subscribe to Event Grid events",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    
+                                    "Microsoft.EventGrid/eventSubscriptions/*",
+                                    "Microsoft.EventGrid/topics/*",
+                                    "Microsoft.Web/sites/functions/*"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Lab10",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Asynchronously process messages via Service Bus Queues",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    
+                                    "Microsoft.ServiceBus/namespaces/*",
+                                    "Microsoft.ServiceBus/namespaces/queues/*",
+                                    "Microsoft.ServiceBus/namespaces/authorizationRules/listKeys/action"
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
                 }
             ]
         }
