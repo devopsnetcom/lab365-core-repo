@@ -2040,7 +2040,11 @@
                                     "Microsoft.DevOps/organizations/*",
                                     "Microsoft.DevOps/organizations/projects/*",
                                     "Microsoft.DevOps/organizations/projects/pipelines/*",
-                                    "Microsoft.DevOps/organizations/projects/agentPools/*"
+                                    "Microsoft.DevOps/organizations/projects/agentPools/*",
+                                    "Microsoft.Compute/virtualMachines/*",
+                                    "Microsoft.Network/networkInterfaces/*",
+                                    "Microsoft.Network/virtualNetworks/*",
+                                    "Microsoft.Network/publicIPAddresses/*"
                                     
                                 ],
                                 "notActions": [],
