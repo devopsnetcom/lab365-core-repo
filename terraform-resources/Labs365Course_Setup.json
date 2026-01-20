@@ -1988,8 +1988,10 @@
                                     "Microsoft.Resources/deployments/write",
                                     "Microsoft.Resources/deployments/validate/action",
 
-                                    "Microsoft.DevOps/organizations/projects/*",
-                                    "Microsoft.DevOps/organizations/projects/boards/*"
+                                    "Microsoft.ContainerRegistry/*",
+                                    "Microsoft.Web/*",
+                                    "Microsoft.Storage/*",
+                                    "Microsoft.KeyVault/*"
                                     
                                 ],
                                 "notActions": [],
@@ -2036,9 +2038,10 @@
                                     "Microsoft.Resources/deployments/write",
                                     "Microsoft.Resources/deployments/validate/action",
 
-                                    "Microsoft.DevOps/organizations/projects/*",
-                                    "Microsoft.DevOps/organizations/projects/pipelines/*",
-                                    "Microsoft.DevOps/organizations/projects/agentPools/*",
+                                    "Microsoft.ContainerRegistry/*",
+                                    "Microsoft.Web/*",
+                                    "Microsoft.Storage/*",
+                                    "Microsoft.KeyVault/*",
                                     "Microsoft.Compute/virtualMachines/*",
                                     "Microsoft.Network/networkInterfaces/*",
                                     "Microsoft.Network/virtualNetworks/*",
