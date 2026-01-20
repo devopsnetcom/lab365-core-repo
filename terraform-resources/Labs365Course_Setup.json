@@ -1988,7 +1988,6 @@
                                     "Microsoft.Resources/deployments/write",
                                     "Microsoft.Resources/deployments/validate/action",
 
-                                    "Microsoft.DevOps/organizations/*",
                                     "Microsoft.DevOps/organizations/projects/*",
                                     "Microsoft.DevOps/organizations/projects/boards/*"
                                     
@@ -2037,7 +2036,6 @@
                                     "Microsoft.Resources/deployments/write",
                                     "Microsoft.Resources/deployments/validate/action",
 
-                                    "Microsoft.DevOps/organizations/*",
                                     "Microsoft.DevOps/organizations/projects/*",
                                     "Microsoft.DevOps/organizations/projects/pipelines/*",
                                     "Microsoft.DevOps/organizations/projects/agentPools/*",
