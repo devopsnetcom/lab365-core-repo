@@ -1955,7 +1955,7 @@
                     "name": "Lab01",
                     "adGroup": {
                         "nameTemplate": "{course}-Grp-{module}",
-                        "description": "AD group for {course}-{module} students. Agile planning & Git version control",
+                        "description": "AD group for {course}-{module} students. Agile planning and portfolio management with Azure Boards",
                         "type": "Security",
                         "membershipType": "Assigned"
                     },
@@ -2005,7 +2005,57 @@
                     "name": "Lab02",
                     "adGroup": {
                         "nameTemplate": "{course}-Grp-{module}",
-                        "description": "AD group for {course}-{module} students. Configure agent pools and pipelines",
+                        "description": "AD group for {course}-{module} students. Version Control with Git in Azure Repos",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+
+                                    "Microsoft.ContainerRegistry/*",
+                                    "Microsoft.Web/*",
+                                    "Microsoft.Storage/*",
+                                    "Microsoft.KeyVault/*"
+                                    
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Lab03",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Configure agent pools and understanding pipeline styles",
                         "type": "Security",
                         "membershipType": "Assigned"
                     },
@@ -2046,6 +2096,55 @@
                                     "Microsoft.Network/networkInterfaces/*",
                                     "Microsoft.Network/virtualNetworks/*",
                                     "Microsoft.Network/publicIPAddresses/*"
+                                    
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Lab04",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Enable Continuous Integration with Azure Pipelines",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+
+                                    "Microsoft.Web/sites/*",
+                                    "Microsoft.Web/serverfarms/*",
+                                    "Microsoft.ContainerRegistry/registries/pull/read"
                                     
                                 ],
                                 "notActions": [],
