@@ -2340,7 +2340,6 @@
                                     "Microsoft.Resources/deployments/validate/action",
 
                                     "Microsoft.Insights/metrics/read",
-                                    "Microsoft.Insights/metricsDefinitions/read",
                                     "Microsoft.Insights/alertRules/read",
                                     "Microsoft.Insights/alertRules/activated/action",
                                     "Microsoft.Insights/activityLogAlerts/read",
