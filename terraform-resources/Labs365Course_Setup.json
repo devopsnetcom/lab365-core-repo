@@ -2444,8 +2444,9 @@
                                 ],
                                 "notActions": [],
                                 "dataActions": [
-                                    "Microsoft.KeyVault/vaults/secrets/read",
-                                    "Microsoft.KeyVault/vaults/secrets/list/action"
+                                    "Microsoft.KeyVault/vaults/secrets/get",
+                                    "Microsoft.KeyVault/vaults/secrets/list",
+                                    "Microsoft.KeyVault/vaults/secrets/delete"
                                 ],
                                 "notDataActions": []
                             }
@@ -2633,7 +2634,6 @@
                                     "Microsoft.Resources/deployments/validate/action",
 
                                     "Microsoft.LoadTestService/loadTests/*",
-                                    "Microsoft.LoadTestService/accounts/*",
                                     "Microsoft.Insights/components/*"
 
                                 ],
