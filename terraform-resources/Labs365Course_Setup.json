@@ -2444,7 +2444,6 @@
                                 ],
                                 "notActions": [],
                                 "dataActions": [
-                                    "Microsoft.KeyVault/vaults/secrets/get",
                                     "Microsoft.KeyVault/vaults/secrets/list",
                                     "Microsoft.KeyVault/vaults/secrets/delete"
                                 ],
