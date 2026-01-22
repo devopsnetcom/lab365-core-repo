@@ -2443,10 +2443,7 @@
                                     "Microsoft.KeyVault/vaults/*"
                                 ],
                                 "notActions": [],
-                                "dataActions": [
-                                    "Microsoft.KeyVault/vaults/secrets/list",
-                                    "Microsoft.KeyVault/vaults/secrets/delete"
-                                ],
+                                "dataActions": [],
                                 "notDataActions": []
                             }
                         }
