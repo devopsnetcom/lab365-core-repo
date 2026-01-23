@@ -2876,7 +2876,6 @@
                                     "Microsoft.Resources/deployments/validate/action",
 
                                     "Microsoft.ContainerRegistry/registries/*",
-                                    "Microsoft.ContainerRegistry/registries/policies/*",
                                     "Microsoft.ContainerService/managedClusters/*",
                                     "Microsoft.ContainerService/managedClusters/agentPools/*",
                                     "Microsoft.KeyVault/vaults/secrets/read",
