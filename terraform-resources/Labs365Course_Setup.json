@@ -2978,7 +2978,6 @@
                                     "Microsoft.Resources/deployments/validate/action",
 
                                     "Microsoft.Storage/storageAccounts/*",
-                                    "Microsoft.Storage/storageAccounts/virtualNetworkRules/*",
                                     "Microsoft.Network/virtualNetworks/subnets/join/action"
 
                                 ],
@@ -3027,7 +3026,6 @@
                                     "Microsoft.Resources/deployments/validate/action",
 
                                     "Microsoft.KeyVault/vaults/*",
-                                    "Microsoft.KeyVault/vaults/secrets/list",
                                     "Microsoft.KeyVault/vaults/secrets/write",
                                     "Microsoft.KeyVault/vaults/keys/read",
                                     "Microsoft.KeyVault/vaults/keys/create",
