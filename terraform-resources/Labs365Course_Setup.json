@@ -3027,9 +3027,7 @@
 
                                     "Microsoft.KeyVault/vaults/*",
                                     "Microsoft.KeyVault/vaults/secrets/write",
-                                    "Microsoft.KeyVault/vaults/keys/read",
-                                    "Microsoft.KeyVault/vaults/keys/delete"
-
+                                    "Microsoft.KeyVault/vaults/keys/read"
                                 ],
                                 "notActions": [],
                                 "dataActions": [],
