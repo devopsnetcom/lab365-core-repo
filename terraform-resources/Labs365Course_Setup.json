@@ -3232,6 +3232,130 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "AZ-305",
+            "modules": [
+                {
+                    "name": "Lab01",
+                    "adGroup": {
+                        "nameTemplate": "{course}-Grp-{module}",
+                        "description": "AD group for {course}-{module} students. Designing Microsoft Azure Infrastructure Solutions",
+                        "type": "Security",
+                        "membershipType": "Assigned"
+                    },
+                    "resourceGroup": {
+                        "nameTemplate": "rg-{course}-{module}",
+                        "location": "eastus",
+                        "roleAssignments": [
+                            {
+                                "roleName": "NetCom-RG-ResourceCreator-NoDeleteOrMove",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            },
+                            {
+                                "roleName": "{course}-{module}-ResourceManager",
+                                "principalType": "Group",
+                                "principalid": "{principalid}"
+                            }
+                        ]
+                    },
+                    "roles": [
+                        {
+                            "nameTemplate": "{course}-{module}-ResourceManager",
+                            "description": "Allows create, read, update and delete operations on allowed resource types inside the lab Resource Group, without allowing RG deletion or resource moves.",
+                            "assignableScopes": [
+                                "/subscriptions/{subscriptionid}/resourceGroups/rg-{course}-{module}"
+                            ],
+                            "permissions": {
+                                "actions": [
+                                    "Microsoft.Resources/deployments/read",
+                                    "Microsoft.Resources/deployments/write",
+                                    "Microsoft.Resources/deployments/validate/action",
+                                    
+                                    "Microsoft.Authorization/roleAssignments/*",
+                                    "Microsoft.Authorization/roleDefinitions/read",
+                                    "Microsoft.ManagedIdentity/userAssignedIdentities/*",
+
+                                    "Microsoft.Compute/virtualMachines/*",
+                                    "Microsoft.Compute/disks/*",
+                                    "Microsoft.Compute/snapshots/*",
+                                    "Microsoft.Compute/images/*",
+                                    "Microsoft.Compute/galleries/*",
+                                    "Microsoft.Compute/availabilitySets/*",
+                                    "Microsoft.Compute/virtualMachineScaleSets/*",
+                                    "Microsoft.Compute/sshPublicKeys/*",
+
+                                    "Microsoft.Network/virtualNetworks/*",
+                                    "Microsoft.Network/publicIPAddresses/*",
+                                    "Microsoft.Network/networkSecurityGroups/*",
+                                    "Microsoft.Network/loadBalancers/*",
+                                    "Microsoft.Network/applicationGateways/*",
+                                    "Microsoft.Network/routeTables/*",
+                                    "Microsoft.Network/networkInterfaces/*",
+                                    "Microsoft.Network/privateEndpoints/*",
+                                    "Microsoft.Network/privateLinkServices/*",
+                                    "Microsoft.Network/dnsZones/*",
+                                    "Microsoft.Network/trafficManagerProfiles/*",
+                                    "Microsoft.Network/frontDoors/*",
+                                    "Microsoft.Network/applicationSecurityGroups/*",
+
+                                    "Microsoft.Storage/storageAccounts/*",
+                                    "Microsoft.Storage/storageAccounts/blobServices/containers/*",
+
+                                    "Microsoft.Web/sites/*",
+                                    "Microsoft.Web/serverfarms/*",
+                                    "Microsoft.Web/hostingEnvironments/*",
+
+                                    "Microsoft.ContainerService/managedClusters/*",
+                                    "Microsoft.ContainerRegistry/registries/*",
+
+                                    "Microsoft.Sql/servers/*",
+                                    "Microsoft.Sql/managedInstances/*",
+                                    "Microsoft.DBforPostgreSQL/servers/*",
+                                    "Microsoft.DBforMySQL/servers/*",
+                                    "Microsoft.Cache/redis/*",
+
+                                    "Microsoft.Insights/metricAlerts/*",
+                                    "Microsoft.Insights/activityLogAlerts/*",
+                                    "Microsoft.Insights/components/*",
+                                    "Microsoft.Insights/logprofiles/*",
+                                    "Microsoft.Insights/diagnosticSettings/*",
+                                    "Microsoft.Insights/actionGroups/*",
+
+                                    "Microsoft.RecoveryServices/vaults/*",
+                                    "Microsoft.RecoveryServices/locations/backupStatus/*",
+                                    "Microsoft.RecoveryServices/locations/backupPreValidateProtection/*",
+                                    "Microsoft.RecoveryServices/locations/backupValidateFeatures/*",
+                                    "Microsoft.DataProtection/backupVaults/*",
+
+                                    "Microsoft.Security/policies/*",
+                                    "Microsoft.Security/pricings/*",
+                                    "Microsoft.Security/automations/*",
+                                    "Microsoft.KeyVault/vaults/*",
+                                    "Microsoft.KeyVault/managedHSMs/*",
+
+                                    "Microsoft.PolicyInsights/policyStates/*",
+                                    "Microsoft.Authorization/policyAssignments/*",
+                                    "Microsoft.Authorization/policyDefinitions/*",
+                                    "Microsoft.Authorization/policySetDefinitions/*",
+
+                                    "Microsoft.Resources/tags/*",
+                                    "Microsoft.CostManagement/*",
+
+                                    "Microsoft.Resources/subscriptions/resourceGroups/*",
+                                    "Microsoft.Resources/deployments/*",
+                                    "Microsoft.Resources/providers/*"
+
+                                ],
+                                "notActions": [],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
